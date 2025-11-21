@@ -26,7 +26,6 @@ func main() {
 		total += diff
 	}
 
-	//TODO: complete part 2 of this challenge
-
 	fmt.Println(total)
+
 }
