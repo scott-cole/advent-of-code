@@ -16,7 +16,11 @@ func main() {
 	total := float64(0)
 
 	for i, a := range list1 {
+		// converted to float64() to be able to do math.Abs as this only accepts
+		// float64
 		b := float64(list2[i])
+
+		// works out the difference between the list index
 		diff := math.Abs(float64(a) - b)
 
 		total += diff
