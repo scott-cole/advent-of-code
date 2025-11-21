@@ -2,15 +2,18 @@ package main
 
 import (
 	"fmt"
-	"math"
-	"sort"
+	// "math"
+	// "sort"
 )
 
 func main() {
 	list1 := []int{3, 4, 2, 1, 3, 3}
 	list2 := []int{4, 3, 5, 3, 9, 3}
+	score := score(list1, list2)
 
-	sort.Ints(list1)
+	fmt.Println(score)
+
+	/* sort.Ints(list1)
 	sort.Ints(list2)
 
 	total := float64(0)
@@ -22,10 +25,25 @@ func main() {
 
 		// works out the difference between the list index
 		diff := math.Abs(float64(a) - b)
-
 		total += diff
 	}
 
-	fmt.Println(total)
+	fmt.Println(total) */
 
+}
+
+func score(list1, list2 []int) int {
+	score := 0
+
+	list1Count := make(map[int]int)
+	for _, i := range list1 {
+		list1Count[i]++
+	}
+
+	for _, i := range list2 {
+		list2Count := list1Count[i]
+		score += i * list2Count
+	}
+
+	return score
 }
