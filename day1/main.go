@@ -35,14 +35,14 @@ func main() {
 func score(list1, list2 []int) int {
 	score := 0
 
-	list1Count := make(map[int]int)
-	for _, i := range list1 {
-		list1Count[i]++
+	list2Count := make(map[int]int)
+	for _, i := range list2 {
+		list2Count[i]++
 	}
 
-	for _, i := range list2 {
-		list2Count := list1Count[i]
-		score += i * list2Count
+	for _, i := range list1 {
+		countInList2 := list2Count[i]
+		score += i * countInList2
 	}
 
 	return score
