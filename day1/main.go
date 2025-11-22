@@ -10,6 +10,7 @@ import (
 	// "sort"
 )
 
+// TODO: ask Jack for more info on this, dont fully understand make method
 func score(list1, list2 []int) int {
 	score := 0
 
@@ -30,7 +31,6 @@ func main() {
 	file, err := os.Open("./input.txt")
 	if err != nil {
 		fmt.Println(err)
-		return
 	}
 	defer file.Close()
 
