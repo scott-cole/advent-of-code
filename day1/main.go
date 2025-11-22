@@ -1,15 +1,65 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strconv"
+	"strings"
 	// "math"
 	// "sort"
 )
 
-// TODO: speak to jack about reading the actual input from a file
+func score(list1, list2 []int) int {
+	score := 0
+
+	list2Count := make(map[int]int)
+	for _, i := range list2 {
+		list2Count[i]++
+	}
+
+	for _, i := range list1 {
+		countInList2 := list2Count[i]
+		score += i * countInList2
+	}
+
+	return score
+}
+
 func main() {
-	list1 := []int{3, 4, 2, 1, 3, 3}
-	list2 := []int{4, 3, 5, 3, 9, 3}
+	file, err := os.Open("./input.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer file.Close()
+
+	var list1 []int
+	var list2 []int
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		parts := strings.Fields(line)
+
+		num1, err := strconv.Atoi(parts[0])
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		num2, err := strconv.Atoi(parts[1])
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		list1 = append(list1, num1)
+		list2 = append(list2, num2)
+	}
+
+	if err := scanner.Err(); err != nil {
+		fmt.Println(err)
+	}
+
 	score := score(list1, list2)
 
 	fmt.Println(score)
@@ -31,20 +81,4 @@ func main() {
 
 	fmt.Println(total) */
 
-}
-
-func score(list1, list2 []int) int {
-	score := 0
-
-	list2Count := make(map[int]int)
-	for _, i := range list2 {
-		list2Count[i]++
-	}
-
-	for _, i := range list1 {
-		countInList2 := list2Count[i]
-		score += i * countInList2
-	}
-
-	return score
 }
